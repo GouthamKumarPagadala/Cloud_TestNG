@@ -13,10 +13,6 @@ public class ExtentManager {
     private static ExtentReports extent;
     private static Platform platform;
     private static String reportFileName = "Test-Automaton-Report.html";
-    private static String macPath = System.getProperty("user.dir")+ "/TestReport";
-    private static String windowsPath = System.getProperty("user.dir")+ "\\TestReport";
-    private static String macReportFileLoc = macPath + "/" + reportFileName;
-    private static String winReportFileLoc = windowsPath + "\\" + reportFileName;
  
     public static ExtentReports getInstance() {
         if (extent == null)
@@ -26,15 +22,14 @@ public class ExtentManager {
  
     //Create an extent report instance
     public static ExtentReports createInstance() {
-        platform = getCurrentPlatform();
-        String fileName = getReportFileLocation(platform);
-        ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(fileName);
+     
+        ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir")+"/"+reportFileName);
         htmlReporter.config().setTestViewChartLocation(ChartLocation.BOTTOM);
         htmlReporter.config().setChartVisibilityOnOpen(true);
         htmlReporter.config().setTheme(Theme.STANDARD);
-        htmlReporter.config().setDocumentTitle(fileName);
+        htmlReporter.config().setDocumentTitle(System.getProperty("user.dir")+"/"+reportFileName);
         htmlReporter.config().setEncoding("utf-8");
-        htmlReporter.config().setReportName(fileName);
+        htmlReporter.config().setReportName(System.getProperty("user.dir")+"/"+reportFileName);
         
  
         extent = new ExtentReports();
@@ -43,29 +38,7 @@ public class ExtentManager {
         return extent;
     }
  
-    //Select the extent report file location based on platform
-    private static String getReportFileLocation (Platform platform) {
-        String reportFileLocation = null;
-        switch (platform) {
-            case MAC:
-                reportFileLocation = macReportFileLoc;
-                createReportPath(macPath);
-                System.out.println("ExtentReport Path for MAC: " + macPath + "\n");
-                break;
-            case WINDOWS:
-                reportFileLocation = winReportFileLoc;
-                createReportPath(windowsPath);
-                System.out.println("ExtentReport Path for WINDOWS: " + windowsPath + "\n");
-                break;
-            default:
-            	reportFileLocation = winReportFileLoc;
-                createReportPath(windowsPath);
-                System.out.println("ExtentReport path has not been set! There is a problem!\n");
-                break;
-        }
-        return reportFileLocation;
-    }
- 
+    
     //Create the report path if it does not exist
     private static void createReportPath (String path) {
         File testDirectory = new File(path);
@@ -80,21 +53,5 @@ public class ExtentManager {
         }
     }
  
-    //Get current platform
-    private static Platform getCurrentPlatform () {
-        if (platform == null) {
-            String operSys = System.getProperty("os.name").toLowerCase();
-            if (operSys.contains("win")) {
-                platform = Platform.WINDOWS;
-            } else if (operSys.contains("nix") || operSys.contains("nux")
-                    || operSys.contains("aix")) {
-                platform = Platform.LINUX;
-            } else if (operSys.contains("mac")) {
-                platform = Platform.MAC;
-            }
-        }else {
-        	platform = Platform.getCurrent();
-        }
-        return platform;
-    }
+    
 }
