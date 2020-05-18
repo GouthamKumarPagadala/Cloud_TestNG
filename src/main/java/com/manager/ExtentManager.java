@@ -58,6 +58,8 @@ public class ExtentManager {
                 System.out.println("ExtentReport Path for WINDOWS: " + windowsPath + "\n");
                 break;
             default:
+            	reportFileLocation = winReportFileLoc;
+                createReportPath(windowsPath);
                 System.out.println("ExtentReport path has not been set! There is a problem!\n");
                 break;
         }
@@ -90,6 +92,8 @@ public class ExtentManager {
             } else if (operSys.contains("mac")) {
                 platform = Platform.MAC;
             }
+        }else {
+        	platform = Platform.getCurrent();
         }
         return platform;
     }
