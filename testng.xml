@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Terrain">
+	<listeners>
+		<listener class-name="com.listener.TestListener" />
+	</listeners>
+
+	<test name="jyoti_cloudDevice">
+		<parameter name="testName" value="Android" />
+		<parameter name="accessKey" value="eyJ4cC51Ijo0NTU2OTcsInhwLnAiOjQ1NTY4OSwieHAubSI6Ik1UVTRPVE0yTnprMU1EQXlNdyIsImFsZyI6IkhTMjU2In0.eyJleHAiOjE5MDQ3Mjc5NTAsImlzcyI6ImNvbS5leHBlcml0ZXN0In0.9PEKvslTXNVQjibm_oLIBni8iknsIwo1etQfjBMQ8ME" />
+		<parameter name="platformName" value="Android" />
+		<parameter name="platformVersion" value="8" />
+		<parameter name="deviceName" value="SM-G9600" />
+		<parameter name="udId" value="5a514c3841563398" />
+		<parameter name="appPackage"
+			value="com.experitest.ExperiBank" />
+		<parameter name="appActivity" value=".LoginActivity" />
+		<classes>
+			<class name="com.terrain.Jyoti" />
+			<class name="com.terrain.BaseTest" />
+			<class name="com.pageobjects.Jyoti_pageobject" />
+		</classes>
+	</test>
+
+
+	<!-- <test name="jyoti_realDevice"> <parameter name="platformName" value="Android" 
+		/> <parameter name="platformVersion" value="9" /> <parameter name="deviceName" 
+		value="Mi A1" /> <parameter name="udId" value="288a84740804" /> <parameter 
+		name="appPackage" value="com.experitest.ExperiBank" /> <parameter name="appActivity" 
+		value=".LoginActivity" /> <classes> <class name="com.terrain.Jyoti" /> </classes> 
+		</test> jyoti -->
+
+	<!-- <test name="jyoti_emulator"> <parameter name="platformName" value="Android" 
+		/> <parameter name="platformVersion" value="9" /> <parameter name="deviceName" 
+		value="Mi A1" /> <parameter name="udId" value="288a84740804" /> <parameter 
+		name="appPackage" value="com.experitest.ExperiBank" /> <parameter name="appActivity" 
+		value=".LoginActivity" /> <classes> <class name="com.terrain.Jyoti" /> </classes> 
+		</test> --> <!-- jyoti -->
+
+</suite> <!-- Terrain -->
